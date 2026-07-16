@@ -1,0 +1,36 @@
+<div class="row flex flex-wrap gap-26">
+    <div class="co1-12 col-lg-6 w-full lg:w-180">
+        <app-static-panel></app-static-panel>
+    </div>
+    <div class="co1-12 col-lg-6  w-full p-6 max-w-113 h-auto flex justify-center items-center">
+        <form class="w-full max-w-113 h-auto" action="">
+            <div>
+                <!-- steps shape -->
+                <h2 class="font-bold text-[30px] text-[#1F2937]">Create Account</h2>
+            </div>
+
+            <div>
+                <span class="font-bold text-2xl text-[#155DFC]">Verify OTP</span>
+                <p class="text-[#6B7280]">Please enter the 6-digits code we have sent to:<br>user@example.com. <span
+                        class="font-medium align-middle underline decoration-solid decoration-skip-ink text-[#155DFC]">Edit</span>
+                </p>
+            </div>
+
+            <div class="card flex flex-col items-center pt-6">
+                <p-inputotp [(ngModel)]="otp" name="otp" [length]="5">
+                </p-inputotp>
+                <p class="font-medium text-sm text-[#6B7280] pt-3">You can request another code in: 60s</p>
+            </div>
+
+            <div class="pt-10">
+                <button routerLink="/user-info" pButton type="button"
+                    class="w-full text-[#1F2937]! font-medium text-sm bg-[#EFF6FF]! rounded-xl border border-[#155DFC]! py-3">
+                    Verify Code
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

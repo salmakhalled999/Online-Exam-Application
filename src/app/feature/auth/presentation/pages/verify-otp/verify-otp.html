@@ -1,0 +1,38 @@
+<div class="row flex flex-wrap gap-26">
+    <div class="co1-12 col-lg-6 w-full lg:w-180">
+        <app-static-panel></app-static-panel>
+    </div>
+
+    <div class="co1-12 col-lg-6  w-full p-6 max-w-113 h-auto flex flex-col justify-center items-start">
+        <div class="pb-15">
+            <button pButton type="button" icon="pi pi-arrow-left"
+                class="w-10 h-10 border-[1.5px] border-[#E5E7EB]! bg-white! text-[#1F2937]!">
+            </button>
+        </div>
+
+        <div>
+            <h2 class="font-bold text-[30px] text-[#1F2937]">Password Reset Sent</h2>
+        </div>
+
+        <div class="font-normal text-base leading-none tracking-normal align-middle pt-4">
+            <p>
+                We have sent a password reset link to:
+                <br>
+                <span class="text-[#155DFC]">user@example.com.</span>
+            </p>
+            <p class="pt-6">
+                Please check your inbox and follow the <br> instructions to reset your password.
+            </p>
+            <p class="text-sm text-[#6B7280] pt-6">
+                If you don’t see the email within a few minutes, check your spam or junk folder.
+            </p>
+        </div>
+
+        <div class="pt-12">
+            <a routerLink="/email" class="cursor-pointer font-medium text-sm text-[#6B7280]!">
+                Don’t have an account? <span class="text-[#155DFC]">Create yours</span>
+            </a>
+        </div>
+
+    </div>
+</div>

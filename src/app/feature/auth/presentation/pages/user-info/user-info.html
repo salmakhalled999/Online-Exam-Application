@@ -1,0 +1,60 @@
+<div class="row flex flex-wrap gap-26">
+    <div class="co1-12 col-lg-6 w-full lg:w-180">
+        <app-static-panel></app-static-panel>
+    </div>
+
+    <div class="co1-12 col-lg-6  w-full p-6 max-w-113 h-auto flex justify-center items-center">
+        <form class="w-full max-w-113 h-auto" action="">
+            <div>
+                <!-- steps shape -->
+                <h2 class="font-bold text-[30px] text-[#1F2937]">Create Account</h2>
+            </div>
+
+            <div>
+                <span class="font-bold text-2xl text-[#155DFC]">Tell us more about you</span>
+            </div>
+
+            <div class="flex gap-4 pt-6">
+                <div>
+                    <label for="firstName" class="font-medium text-[#1F2937]">First name<span
+                            class="font-medium text-[#DC2626]">*</span></label>
+                    <input class="w-49" pInputText id="firstName" type="text" placeholder="Ahmed" />
+                </div>
+                <div>
+                    <label for="lastName" class="font-medium text-[#1F2937]">Last name<span
+                            class="font-medium text-[#DC2626]">*</span></label>
+                    <input class="w-49" pInputText id="lastName" type="text" placeholder="Abdullah" />
+                </div>
+            </div>
+
+            <div class="flex flex-col pt-2">
+                <label for="username" class="font-medium text-[#1F2937]">Username<span
+                        class="font-medium text-[#DC2626]">*</span></label>
+                <input pInputText id="username" type="text" placeholder="user123" />
+            </div>
+
+            <div class="pt-2">
+                <label for="phone" class="font-medium">Phone</label>
+                <p-inputgroup>
+                    <p-inputgroup-addon>
+                        <img src="/images/icons8-egypt-48.png" alt="Egypt" class="w-5 h-4 rounded-sm">
+                        <span class="ml-2">+20</span>
+                    </p-inputgroup-addon>
+
+                    <input pInputText id="phone" type="tel" placeholder="1012345678" [(ngModel)]="phone" name="phone">
+                </p-inputgroup>
+            </div>
+
+            <div class="pt-10">
+                <button pButton type="button" routerLink="/password"
+                    class="w-full text-[#1F2937]! font-medium text-sm bg-[#EFF6FF]! border-[#155DFC]! py-3">
+                    Next
+                    <i class="pi pi-chevron-right"></i>
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
