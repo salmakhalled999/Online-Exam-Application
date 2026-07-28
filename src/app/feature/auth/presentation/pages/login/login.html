@@ -4,20 +4,20 @@
         <app-static-panel></app-static-panel>
     </div>
     <div class="col-12 col-lg-6 w-full p-6 max-w-113 h-auto flex justify-center items-center">
-        <form class="w-full max-w-113 h-auto " action="">
+        <form class="w-full max-w-113 h-auto " action="" [formGroup]="loginForm" (ngSubmit)="login()">
             <div>
                 <h2 class="font-bold text-[30px] text-[#1F2937]">Login</h2>
             </div>
 
             <div class="flex flex-col gap-1 pt-10">
                 <label for="username" class="font-medium text-[#1F2937]">Username</label>
-                <input pInputText  id="username" type="text" placeholder="user123" />
+                <input pInputText formControlName="username"  id="username" type="text" placeholder="user123" />
             </div>
 
             <div class="flex flex-col gap-1 pt-4">
                 <label for="password" class="font-medium  text-[#1F2937]">Password</label>
 
-                <p-password inputId="password" placeholder="********" [feedback]="false" [toggleMask]="true" fluid>
+                <p-password formControlName="password" inputId="password" placeholder="********" [feedback]="false" [toggleMask]="true" fluid>
                 </p-password>
             </div>
 
@@ -26,7 +26,7 @@
             </div>
 
             <div class="pt-10">
-                <button routerLink="/login-error" pButton type="" class="w-full text-white font-medium text-sm bg-[#155DFC]! border-[#155DFC]! rounded-xl py-3">
+                <button routerLink="" pButton type="submit" class="w-full text-white font-medium text-sm bg-[#155DFC]! border-[#155DFC]! rounded-xl py-3">
                     Login
                 </button>
             </div>
