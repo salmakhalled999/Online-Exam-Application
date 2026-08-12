@@ -1,0 +1,5 @@
+.red-radio {
+  --p-radiobutton-checked-background: #DC2626;
+  --p-radiobutton-checked-border-color: #dc2626;
+  --p-radiobutton-icon-checked-color: #ffffff;
+}
