@@ -6,18 +6,18 @@
         <form class="w-full max-w-113 h-auto" action="">
             <div>
                 <!-- steps shape -->
-                <h2 class="font-bold text-[30px] text-[#1F2937]">Create Account</h2>
+                <h2 class="font-inter font-bold text-[30px] text-[#1F2937]">Create Account</h2>
             </div>
 
             <div>
-                <span class="font-bold text-2xl text-[#155DFC]">Verify OTP</span>
+                <span class="font-inter font-bold text-2xl text-[#155DFC]">Verify OTP</span>
                 <p class="text-[#6B7280]">Please enter the 6-digits code we have sent to:<br>user@example.com. <span
                         class="font-medium align-middle underline decoration-solid decoration-skip-ink text-[#155DFC]">Edit</span>
                 </p>
             </div>
 
             <div class="card flex flex-col items-center pt-6">
-                <p-inputotp [(ngModel)]="otp" name="otp" [length]="5">
+                <p-inputotp [(ngModel)]="otp" name="otp" [length]="6">
                 </p-inputotp>
                 <p class="font-medium text-sm text-[#6B7280] pt-3">You can request another code in: 60s</p>
             </div>

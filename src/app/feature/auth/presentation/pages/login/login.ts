@@ -5,6 +5,8 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageModule } from 'primeng/message';
 import { RouterLink} from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from './../../../../../../../dist/auth';
@@ -14,7 +16,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [StaticPanel, InputTextModule, IconFieldModule,
-  InputIconModule, PasswordModule, ButtonModule, RouterLink, ReactiveFormsModule],
+    InputIconModule, PasswordModule, ButtonModule, RouterLink, ReactiveFormsModule, MessageModule, ToastModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
   standalone: true,
@@ -24,10 +26,16 @@ export class Login {
   private readonly router= inject(Router)
 
 
+  // '' == false
+  errorMsg: string =''
+  successMsg:string =''
+
+
   loginForm :FormGroup =new FormGroup ({
     username: new FormControl (null,[Validators.required]),
     password: new FormControl (null,[Validators.required])
   })
+
 
   login(){
     console.log("login successfully")
@@ -36,10 +44,13 @@ export class Login {
         next: (res) => {
           console.log(res);
           
+
         },
         error: (err) => {
           console.log(err);
-          this.router.navigate(["/login-error"])
+          this.errorMsg = err.error.meassage
+
+          
         }
       });
     }
