@@ -21,8 +21,6 @@ import { RegisterDataService } from '../../services/register-data.service';
   styleUrl: './user-info.css',
 })
 export class UserInfo implements OnInit {
-  // phone:string ='';
-
   private readonly pLATFORM_ID = inject(PLATFORM_ID)
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
@@ -32,7 +30,6 @@ export class UserInfo implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     if (isPlatformBrowser(this.pLATFORM_ID)) {
       const inputElement = document.getElementById('phone') as HTMLInputElement
 

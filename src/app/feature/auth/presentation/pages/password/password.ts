@@ -1,3 +1,4 @@
+import { Email } from './../email/email';
 import { Component, inject } from '@angular/core';
 import { StaticPanel } from "../../components/static-panel/static-panel";
 import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +29,7 @@ export class Password {
 
   PasswordForm: FormGroup = new FormGroup({
     password: new FormControl(null,[Validators.required]),
-    confirmPassword: new FormControl([Validators.required])
+    confirmPassword: new FormControl(null,[Validators.required])
   })
 
 
@@ -38,6 +39,9 @@ export class Password {
       ...this.registerDataService.registerData,
       ...this.PasswordForm.value
     }
+
+    console.log('REGISTER BODY:', body);
+
     if(this.PasswordForm.valid){
       this.authService.register(body).subscribe({
         next: (res) => {

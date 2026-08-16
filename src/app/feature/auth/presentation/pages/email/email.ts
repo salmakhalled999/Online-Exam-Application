@@ -29,17 +29,17 @@ export class Email {
     email: new FormControl(null, [Validators.required])
   })
 
+
   email() {
-    console.log("")
     if (this.emailForm.valid) {
       this.authService.verifyEmail(this.emailForm.value).subscribe({
         next: (res) => {
-          console.log(res);
-          // this.registerDataService.registerData = this.emailForm.value
+          // store email
           this.registerDataService.registerData = {
-            ...this.registerDataService.registerData,
-            ...this.emailForm.value
+            email: this.emailForm.get('email')?.value,
           };
+          console.log(res);
+          // navigate to code page
           this.router.navigate(["/verify-email"])
         },
         error: (err) => {
@@ -47,6 +47,5 @@ export class Email {
         }
       });
     }
-
   }
 }
