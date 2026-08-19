@@ -35,25 +35,20 @@ export class Password {
 
 
   createAccount(){
-    const body ={
-      ...this.registerDataService.registerData,
-      ...this.PasswordForm.value
-    }
-
-    console.log('REGISTER BODY:', body);
-
     if(this.PasswordForm.valid){
+      const body = {
+        ...this.registerDataService.registerData,
+        ...this.PasswordForm.value
+      }
       this.authService.register(body).subscribe({
         next: (res) => {
           console.log(res);
           this.router.navigate(["/login"])
-          
         },
         error: (err) => {
           console.log(err);
         }
       });
     }
-
   }
 }

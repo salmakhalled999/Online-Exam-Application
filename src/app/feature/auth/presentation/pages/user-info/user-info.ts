@@ -52,9 +52,11 @@ export class UserInfo implements OnInit {
 
   submitUserInfo() {
     if (this.registerForm.valid) {
+      const phone: string = this.registerForm.value.phone;
       this.registerDataService.registerData = {
         ...this.registerDataService.registerData,
-        ...this.registerForm.value
+        ...this.registerForm.value,
+        phone: phone.startsWith('0') ? phone : '0' + phone
       }
       this.router.navigate(["/password"])
     }
