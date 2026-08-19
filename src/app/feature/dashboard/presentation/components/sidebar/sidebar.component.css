@@ -1,0 +1,4 @@
+:host ::ng-deep .logout-item .p-menu-item-link,
+:host ::ng-deep .logout-item .p-menu-item-link .pi {
+  color: #dc2626 !important;
+}

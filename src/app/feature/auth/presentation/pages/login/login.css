@@ -1,0 +1,7 @@
+.p-inputtext.p-invalid {
+    border-color: #DC2626 !important;
+}
+.p-password .p-inputtext.p-invalid:focus {
+  border-color: #DC2626 !important;
+  box-shadow: none !important; 
+}

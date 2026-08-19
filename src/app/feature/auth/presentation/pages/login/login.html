@@ -6,27 +6,60 @@
     <div class="col-12 col-lg-6 w-full p-6 max-w-113 h-auto flex justify-center items-center">
         <form class="w-full max-w-113 h-auto " action="" [formGroup]="loginForm" (ngSubmit)="login()">
             <div>
-                <h2 class="font-bold text-[30px] text-[#1F2937]">Login</h2>
+                <h2 class="font-inter font-bold text-[30px] text-[#1F2937]">Login</h2>
             </div>
 
-            <div class="flex flex-col gap-1 pt-10">
-                <label for="username" class="font-medium text-[#1F2937]">Username</label>
-                <input pInputText formControlName="username"  id="username" type="text" placeholder="user123" />
-            </div>
+            <div>
+                <div class="flex flex-col gap-1 pt-10">
+                    <label for="username" class="font-medium text-[#1F2937]">Username</label>
 
+                    <input pInputText formControlName="username" id="username" type="text" placeholder="user123"
+                    [invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"/>
+                </div>
+
+                @if (loginForm.get('username')?.errors && loginForm.get('username')?.touched)
+                {
+                <div class="pt-2 ">
+                    <p-message severity="error" text="Your username is required" />
+                </div>
+                }
+            </div>
+            
             <div class="flex flex-col gap-1 pt-4">
-                <label for="password" class="font-medium  text-[#1F2937]">Password</label>
+                <div>
+                    <label for="password" class="font-medium  text-[#1F2937]">Password</label>
 
-                <p-password formControlName="password" inputId="password" placeholder="********" [feedback]="false" [toggleMask]="true" fluid>
-                </p-password>
+                    <p-password formControlName="password" inputId="password" placeholder="********" [feedback]="false"
+                        [toggleMask]="true" fluid
+                        [invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    </p-password>
+                </div>
+
+                @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
+                <div class="pt-2">
+                    <p-message severity="error" text="Your password is required" />
+                </div>
+                }
             </div>
+
+            <!-- @if(errorMsg){
+            <div class="relative w-100 text-center mt-5 h-9.5 p-2.5 border border-[#DC2626] bg-[#FEF2F2]">
+                <span class=" flex items-center justify-center text-sm align-middle text-[#DC2626] ">
+                    {{errorMsg}}
+                </span>
+                <i
+                    class="pi pi-times-circle absolute left-1/2 -translate-x-1/2 -top-1.75 text-[18px] text-[#DC2626] bg-white rounded-full"></i>
+            </div>
+            } -->
 
             <div class="pt-2 flex justify-end">
-                 <a routerLink="/forgot-password"  class="font-medium cursor-pointer text-sm text-[#155DFC]">Forgot your password?</a>
+                <a routerLink="/forgot-password" class="font-medium cursor-pointer text-sm text-[#155DFC]">Forgot your
+                    password?</a>
             </div>
 
             <div class="pt-10">
-                <button routerLink="" pButton type="submit" class="w-full text-white font-medium text-sm bg-[#155DFC]! border-[#155DFC]! rounded-xl py-3">
+                <button routerLink="" pButton type="submit"
+                    class="w-full text-white font-medium text-sm bg-[#155DFC]! border-[#155DFC]! rounded-xl py-3">
                     Login
                 </button>
             </div>
@@ -39,5 +72,4 @@
 
         </form>
     </div>
-</div> 
-
+</div>

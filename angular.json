@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "cb40286d-113d-4245-939e-e4156bcd0da4"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -34,7 +35,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["node_modules/primeicons/primeicons.css", "src/styles.css"],
+            "styles": [ 
+              "node_modules/intl-tel-input/dist/css/intlTelInput.css",
+              "node_modules/primeicons/primeicons.css", "src/styles.css"
+          ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {

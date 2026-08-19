@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { RouterLink } from "@angular/router";
 import { AuthService } from './../../../../../../../dist/auth';
 import { Router } from '@angular/router';
+import { RegisterDataService } from '../../services/register-data.service';
 
 
 @Component({
@@ -20,16 +21,25 @@ export class Email {
   private readonly authService = inject(AuthService)
   private readonly router = inject(Router)
 
-  emailForm : FormGroup = new FormGroup({
-    email : new FormControl (null , [Validators.required])
+  constructor(
+    private registerDataService: RegisterDataService
+  ) { }
+
+  emailForm: FormGroup = new FormGroup({
+    email: new FormControl(null, [Validators.required])
   })
 
-  email(){
-    console.log("")
-    if(this.emailForm.valid){
+
+  email() {
+    if (this.emailForm.valid) {
       this.authService.verifyEmail(this.emailForm.value).subscribe({
         next: (res) => {
+          // store email
+          this.registerDataService.registerData = {
+            email: this.emailForm.get('email')?.value,
+          };
           console.log(res);
+          // navigate to code page
           this.router.navigate(["/verify-email"])
         },
         error: (err) => {
@@ -37,6 +47,5 @@ export class Email {
         }
       });
     }
-
   }
 }
