@@ -9,12 +9,12 @@ import { OriginDataRes } from '../interfaces/origin-data.interface';
 export class AuthAdaptorService implements Adaptor {
   adapt (data:OriginDataRes) : RegisterRes{
     return{
-      email :data.user.email,
-      username: data.user.username,
-      firstName:data.user.firstName,
-      lastName:data.user.lastName,
-      phone:data.user.phone,
-      token:data.token,
+      email :data.payload.user.email,
+      username: data.payload.user.username,
+      firstName:data.payload.user.firstName,
+      lastName:data.payload.user.lastName,
+      phone:data.payload.user.phone,
+      token:data.payload.token,
     }
   }
 }
