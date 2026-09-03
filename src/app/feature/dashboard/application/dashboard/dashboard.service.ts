@@ -10,11 +10,23 @@ export class DashboardService {
   private readonly baseUrl = 'https://exam-app.elevate-bootcamp.cloud'
 
 
-  getAllDeplomas(): Observable<any> {
+  getAllDiplomas():Observable<any> {
    return this.httpClient.get(`${this.baseUrl}/api/diplomas`)
   }
 
-  getDeploma(){
-    this.httpClient.get(`${this.baseUrl}/api/diplomas/{id}`)
+  getDiploma(id:string|null):Observable<any>{
+   return this.httpClient.get(`${this.baseUrl}/api/diplomas/${id}`)
+  }
+
+  getAllQuestions(id:string|null):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/api/questions/exam/${id}`)
+  }
+
+  getSubmissiondetailsWithAnalytics(id:string|null):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/api/submissions/${id}`)
+  }
+
+  getAllExam(id:string|null):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/api/exams/${id}`)
   }
 }

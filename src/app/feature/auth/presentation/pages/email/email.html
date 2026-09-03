@@ -3,20 +3,39 @@
         <app-static-panel></app-static-panel>
     </div>
     <div class="co1-12 col-lg-6  w-full p-6 max-w-113 h-auto flex justify-center items-center">
-        <form [formGroup]="emailForm" (ngSubmit)="email()" class="w-full max-w-113 h-auto " action="">
+        <form [formGroup]="emailForm" (ngSubmit)="emailConfirm()" class="w-full max-w-113 h-auto " action="">
             <div>
                 <h2 class="font-inter font-bold text-[30px] text-[#1F2937]">Create Account</h2>
             </div>
 
-            <div class="flex flex-col gap-1 pt-10">
-                <label for="email" class="font-medium text-[#1F2937]">Email</label>
-                <input formControlName="email" pInputText id="email" type="text" placeholder="user@example.com" />
+            <div>
+                <div class="flex flex-col gap-1 pt-10">
+                    <label for="email" class="font-medium text-[#1F2937]">Email</label>
+                    <input formControlName="email" pInputText id="email" type="text" placeholder="user@example.com" />
+                </div>
+
+                @let email = emailForm.get('email');
+                @if (email?.errors && email?.touched) {
+                <div class="max-w-md mx-auto space-y-4 pt-2">
+                    <p-message severity="error" [closable]="false">
+                        <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 list">
+                            @if (email?.getError('required')) {
+                            <li class="text-sm">Email is required</li>
+                            }
+                            @if (email?.getError('email')) {
+                            <li class="text-sm">Must be a valid email(ex: ay7aga@gmail.com)</li>
+                            }
+                        </ul>
+                    </p-message>
+                </div>
+                }
+
             </div>
 
             <div class="pt-10">
-                <button pButton type="submit" 
+                <button pButton type="submit"
                     class="w-full text-[#1F2937]! font-medium text-sm bg-[#EFF6FF]! border-[#155DFC]! py-3">
-                    Next 
+                    Next
                     <i class="pi pi-chevron-right"></i>
                 </button>
             </div>

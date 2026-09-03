@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 import intlTelInput, * as intelTelInput from "intl-tel-input";
 import { isPlatformBrowser } from '@angular/common';
 import { RegisterDataService } from '../../services/register-data.service';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-user-info',
   imports: [StaticPanel, FormsModule, InputTextModule, InputGroupModule,
-    InputGroupAddonModule, IconFieldModule, InputIconModule, ButtonModule, ReactiveFormsModule],
+    InputGroupAddonModule, IconFieldModule, InputIconModule, ButtonModule, ReactiveFormsModule, MessageModule ],
   templateUrl: './user-info.html',
   styleUrl: './user-info.css',
 })
@@ -44,10 +45,10 @@ export class UserInfo implements OnInit {
 
 
   registerForm: FormGroup = new FormGroup({
-    firstName: new FormControl(null, [Validators.required]),
-    lastName: new FormControl(null, [Validators.required]),
-    username: new FormControl(null, [Validators.required]),
-    phone: new FormControl(null, [Validators.required]),
+    firstName: new FormControl(null, [Validators.required , Validators.minLength(3), Validators.maxLength(10)]),
+    lastName: new FormControl(null, [Validators.required , Validators.minLength(3), Validators.maxLength(10)]),
+    username: new FormControl(null, [Validators.required ,  Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_]*$/)]),
+    phone: new FormControl(null, [Validators.required , Validators.pattern(/^01[0125][0-9]{8}$/)]),
   })
 
   submitUserInfo() {

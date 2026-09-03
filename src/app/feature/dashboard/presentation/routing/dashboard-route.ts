@@ -7,6 +7,7 @@ import { DiplomasComponent } from "../pages/diplomas/diplomas.component";
 import { ExamsComponent } from '../pages/exams/exams.component';
 import { QuestionsComponent } from '../pages/questions/questions.component';
 import { AnswersComponent } from '../pages/answers/answers.component';
+import { authGuard } from '../guards/auth-guard';
 
 
 
@@ -16,9 +17,9 @@ export const DASHBOARD_ROUTE : Routes = [
     {path: 'sidebar' , component: SidebarComponent},
     {path: 'card' , component: CardComponent },
     {path: 'panel' , component: PanelComponent},
-    {path: 'diplomas' , component: DiplomasComponent},
-    {path: 'exams' , component: ExamsComponent},
-    {path: 'questions' , component: QuestionsComponent},
-    {path:'answers' , component: AnswersComponent}
+    {path: 'diplomas' , component: DiplomasComponent , canActivate:[authGuard]},
+    {path: 'exams/:id' , component: ExamsComponent},
+    {path: 'questions/:id' , component: QuestionsComponent},
+    {path:'answers/:id' , component: AnswersComponent}
 ]
 

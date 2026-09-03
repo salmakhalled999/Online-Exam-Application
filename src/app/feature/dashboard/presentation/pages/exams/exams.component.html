@@ -1,4 +1,4 @@
-<div class="flex min-h-screen w-full bg-[#F9FAFB]">
+<div class="flex min-h-screen w-full">
 
     <aside class="shrink-0">
         <app-sidebar></app-sidebar>
@@ -7,9 +7,8 @@
     <section class="flex-1 min-w-0">
 
         <div>
-            <div class="w-full h-12.5 pt-4 ps-4 pb-4 bg-red-500">
-                <p>Diplomas / Frontend Development / Exams</p>
-                <!-- <p-breadcrumb></p-breadcrumb> -->
+            <div class="w-full h-12.5 pt-4 ps-4 pb-4">
+                <p-breadcrumb [model]="items"></p-breadcrumb>
             </div>
         </div>
 
@@ -36,23 +35,22 @@
             </div>
         </div>
 
-        <div class="w-full overflow-hidden">
-            <div class="w-253.5 h-247.5 ps-6 pt-6 pe-6 flex flex-col mx-auto gap-4 bg-white">
+        <div class="w-full overflow-visible ">
+            <div class="w-full max-w-257.5 h-auto ps-6 pt-6 pe-6 flex flex-col mx-auto gap-4 bg-white">
                 <p-panel>
-                    <app-panel></app-panel>
-                    <app-panel></app-panel>
-                    <app-panel></app-panel>
-                    <app-panel></app-panel>
-                    <app-panel></app-panel>
-                    <app-panel></app-panel>
+                    @for (item of diplomaExames(); track item.id) {
+                    <app-panel [data]="item" class=""></app-panel>
+                    }
+
+                    <div class="flex justify-center ">
+                        <span
+                            class=" font-normal text-[16px] leading-[100%] tracking-normal text-[#4B5563] align-middle">End
+                            of
+                            list</span>
+                    </div>
                 </p-panel>
             </div>
         </div>
 
-        <div class="flex justify-center pt-4">
-            <span class=" font-normal text-[16px] leading-[100%] tracking-normal text-[#4B5563] align-middle">End of
-                list</span>
-        </div>
     </section>
-
 </div>

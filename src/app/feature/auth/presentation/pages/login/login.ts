@@ -11,6 +11,8 @@ import { RouterLink} from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from './../../../../../../../dist/auth';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 @Component({
@@ -24,33 +26,32 @@ import { Router } from '@angular/router';
 export class Login { 
   private readonly authService = inject(AuthService)
   private readonly router= inject(Router)
-
-
-  // '' == false
-  errorMsg: string =''
-  successMsg:string =''
+  private readonly toastrService = inject (ToastrService)
 
 
   loginForm :FormGroup =new FormGroup ({
-    username: new FormControl (null,[Validators.required]),
-    password: new FormControl (null,[Validators.required])
+    username: new FormControl (null,[Validators.required , Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_]*$/)]),
+    password: new FormControl (null,[Validators.required , Validators.pattern( /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/)])
   })
 
 
   login(){
-    console.log("login successfully")
     if(this.loginForm.valid){
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
           console.log(res);
-          
-
+          // save token in local storage
+          localStorage.setItem('token' , res.token)
+          //toster success msg
+          this.toastrService.success('login successfully', 'Online Exam')
+          // navigate to 
+          this.router.navigate(['/diplomas'])
         },
         error: (err) => {
           console.log(err);
-          this.errorMsg = err.error.meassage
-
-          
+          // toster error message
+          this.toastrService.error('Something went wrong', 'Online Exam')
+          // this.router.navigate(['/login'])
         }
       });
     }

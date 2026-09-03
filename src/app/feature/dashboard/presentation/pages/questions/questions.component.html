@@ -1,4 +1,4 @@
-<div class="flex min-h-screen w-full bg-[#F9FAFB]">
+<div class="flex min-h-screen w-full">
     <!-- sidebar (left-side) -->
     <aside class="shrink-0">
         <app-sidebar></app-sidebar>
@@ -9,9 +9,9 @@
 
         <!-- breadCrumb part -->
         <div>
-            <div class="w-full h-12.5 pt-4 ps-4 pb-4 bg-red-500">
-                <p>Diplomas / Frontend Development / CSS Exam</p>
-                <!-- <p-breadcrumb></p-breadcrumb> -->
+            <div class="w-full h-12.5 pt-4 ps-4 pb-4">
+                <!-- <p>Diplomas / Frontend Development / CSS Exam</p> -->
+                <p-breadcrumb [model]="items" ></p-breadcrumb>
             </div>
         </div>
 
@@ -94,11 +94,12 @@
                 </div>
 
                 <!-- question -->
-                <div class="pt-7">
+                <div class="pt-4">
                     <div>
                         <span
-                            class="text-[#155DFC]  font-semibold text-2xl leading-none tracking-normal align-middle">What
-                            does CSS stand for?</span>
+                            class="text-[#155DFC]  font-semibold text-2xl leading-none tracking-normal align-middle">
+                              {{questionData()[currentQuestionIndex()]?.text}}
+                            </span>
                     </div>
 
                     <div class="card flex pt-4">
@@ -118,19 +119,19 @@
                 </div>
 
                 <!-- buttons -->
-                <div class="flex gap-4 pt-4">
-                    <div class="flex justify-center items-center bg-[#E5E7EB] w-120.75 h-11.5 gap-2.5 ">
+                <div class="flex gap-4 pt-2  ">
+                    <div class="cursor-pointer flex justify-center items-center bg-[#E5E7EB] w-120.75 h-11.5 gap-2.5 ">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M11.25 13.5L6.75 9L11.25 4.5" stroke="#9CA3AF" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                         <button
-                            class="text-[#9CA3AF]  font-medium text-[14px] leading-none tracking-normal align-middle">Previous</button>
+                           (click)="Previous()" type="button" class="text-[#9CA3AF] font-medium text-[14px] leading-none tracking-normal align-middle">Previous</button>
                     </div>
 
-                    <div class="justify-center items-center bg-[#155DFC] w-120.75 h-11.5 flex gap-2.5">
+                    <div class="justify-center cursor-pointer items-center bg-[#155DFC] w-120.75 h-11.5 flex gap-2.5">
                         <button
-                            class="text-[#FFFFFF] font-medium text-[14px] leading-none tracking-normal align-middle">Next</button>
+                           (click)="isLastQuestion()? submit() : next()" type="button" class="text-[#FFFFFF] font-medium text-[14px] leading-none tracking-normal align-middle"> {{isLastQuestion()? 'Submit' : 'Next'}} </button>
                             
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="white" stroke-width="1.5"

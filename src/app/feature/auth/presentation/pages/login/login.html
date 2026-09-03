@@ -4,29 +4,45 @@
         <app-static-panel></app-static-panel>
     </div>
     <div class="col-12 col-lg-6 w-full p-6 max-w-113 h-auto flex justify-center items-center">
-        <form class="w-full max-w-113 h-auto " action="" [formGroup]="loginForm" (ngSubmit)="login()">
+        <form class="w-full max-w-113 h-auto " [formGroup]="loginForm" (ngSubmit)="login()">
             <div>
                 <h2 class="font-inter font-bold text-[30px] text-[#1F2937]">Login</h2>
             </div>
 
+            <!-- user name and alert valedation mes -->
             <div>
+                <!-- user name input -->
                 <div class="flex flex-col gap-1 pt-10">
                     <label for="username" class="font-medium text-[#1F2937]">Username</label>
 
                     <input pInputText formControlName="username" id="username" type="text" placeholder="user123"
-                    [invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"/>
+                        [invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" />
                 </div>
 
-                @if (loginForm.get('username')?.errors && loginForm.get('username')?.touched)
+                <!-- valedation user name mes -->
+                @let username = loginForm.get('username');
+                @if (username?.errors && username?.touched)
                 {
-                <div class="pt-2 ">
-                    <p-message severity="error" text="Your username is required" />
+                <div class="max-w-md mx-auto space-y-4 pt-2">
+                    <p-message severity="error" [closable]="false">
+                        <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 list text-sm">
+                            @if (username?.getError('required')) {
+                            <li>User name is required</li>
+                            }
+                            @if (username?.getError('pattern')) {
+                            <li>First character must be a letter</li>
+                            <li>Must have at least a number</li>
+                            }
+                        </ul>
+                    </p-message>
                 </div>
                 }
             </div>
-            
-            <div class="flex flex-col gap-1 pt-4">
-                <div>
+
+            <!-- password and alert valedation mes -->
+            <div>
+                <!-- password input -->
+                <div  class="flex flex-col gap-1 pt-4">
                     <label for="password" class="font-medium  text-[#1F2937]">Password</label>
 
                     <p-password formControlName="password" inputId="password" placeholder="********" [feedback]="false"
@@ -35,22 +51,27 @@
                     </p-password>
                 </div>
 
-                @if (loginForm.get('password')?.errors && loginForm.get('password')?.touched) {
-                <div class="pt-2">
-                    <p-message severity="error" text="Your password is required" />
+                <!-- valedation password mes  -->
+                @let password = loginForm.get('password') ;
+                @if (password?.errors && password?.touched) {
+                <div class="max-w-md mx-auto space-y-4 pt-2">
+                    <p-message severity="error" [closable]="false">
+                        <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 text-sm">
+                            @if (password?.getError('required')) {
+                            <li>Password is required</li>
+                            }
+                            @if (password?.getError('pattern')) {
+                            <li>At least 1 uppercase letter</li>
+                            <li>At least 1 lowercase letter</li>
+                            <li>At least 1 number</li>
+                            <li>At least 1 special character</li>
+                            <li>Minimum 8 characters</li>
+                            }
+                        </ul>
+                    </p-message>
                 </div>
                 }
             </div>
-
-            <!-- @if(errorMsg){
-            <div class="relative w-100 text-center mt-5 h-9.5 p-2.5 border border-[#DC2626] bg-[#FEF2F2]">
-                <span class=" flex items-center justify-center text-sm align-middle text-[#DC2626] ">
-                    {{errorMsg}}
-                </span>
-                <i
-                    class="pi pi-times-circle absolute left-1/2 -translate-x-1/2 -top-1.75 text-[18px] text-[#DC2626] bg-white rounded-full"></i>
-            </div>
-            } -->
 
             <div class="pt-2 flex justify-end">
                 <a routerLink="/forgot-password" class="font-medium cursor-pointer text-sm text-[#155DFC]">Forgot your
@@ -58,7 +79,7 @@
             </div>
 
             <div class="pt-10">
-                <button routerLink="" pButton type="submit"
+                <button pButton type="submit"
                     class="w-full text-white font-medium text-sm bg-[#155DFC]! border-[#155DFC]! rounded-xl py-3">
                     Login
                 </button>
