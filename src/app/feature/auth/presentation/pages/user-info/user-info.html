@@ -4,50 +4,141 @@
     </div>
 
     <div class="co1-12 col-lg-6  w-full p-6 max-w-113 h-auto flex justify-center items-center">
-        <form [formGroup]="registerForm" class="w-full max-w-113 h-auto" action="">
+        <form [formGroup]="registerForm" class="w-full max-w-113 h-auto" action="" (ngSubmit)="submitUserInfo()">
             <div>
                 <!-- steps shape -->
-                <h2 class="font-bold text-[30px] text-[#1F2937]">Create Account</h2>
+                <h2 class="font-inter font-bold text-[30px] text-[#1F2937]">Create Account</h2>
             </div>
 
             <div>
-                <span class="font-bold text-2xl text-[#155DFC]">Tell us more about you</span>
+                <span class="font-inter font-bold text-2xl text-[#155DFC]">Tell us more about you</span>
             </div>
 
+            <!-- (first , last) name and alert valedation mes -->
             <div class="flex gap-4 pt-6">
+
+                <!-- first name and alert valedation mes -->
                 <div>
-                    <label for="firstName" class="font-medium text-[#1F2937]">First name<span
-                            class="font-medium text-[#DC2626]">*</span></label>
-                    <input formControlName="firstName" class="w-49" pInputText id="firstName" type="text" placeholder="Ahmed" />
+                    <!-- first name input -->
+                    <div>
+                        <label for="firstName" class="font-medium text-[#1F2937]">First name<span
+                                class="font-medium text-[#DC2626]">*</span></label>
+                        <input formControlName="firstName" class="w-49" pInputText id="firstName" type="text"
+                            placeholder="Ahmed" />
+                    </div>
+
+                    <!-- valedation first name mes -->
+                    @let firstName = registerForm.get('firstName');
+                    @if (firstName?.errors && firstName?.touched) {
+                    <div class="max-w-md mx-auto space-y-4 pt-2">
+                        <p-message severity="error" [closable]="false">
+                            <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 list text-sm">
+                                @if (firstName?.getError('required')) {
+                                <li>Name is required</li>
+                                }
+                                @if (firstName?.getError('minlength')) {
+                                <li>At least 3 letters</li>
+                                }
+                                @if (firstName?.getError('maxlength')) {
+                                <li>Up to 10 letters only</li>
+                                }
+                            </ul>
+                        </p-message>
+                    </div>
+                    }
                 </div>
+
+                <!-- last name and alert validation mes -->
                 <div>
-                    <label for="lastName" class="font-medium text-[#1F2937]">Last name<span
-                            class="font-medium text-[#DC2626]">*</span></label>
-                    <input formControlName="lastName" class="w-49" pInputText id="lastName" type="text" placeholder="Abdullah" />
+                    <!-- last name input -->
+                    <div>
+                        <label for="lastName" class="font-medium text-[#1F2937]">Last name<span
+                                class="font-medium text-[#DC2626]">*</span></label>
+                        <input formControlName="lastName" class="w-49" pInputText id="lastName" type="text"
+                            placeholder="Abdullah" />
+                    </div>
+
+                    <!-- validation last name mes -->
+                    @let lastName = registerForm.get('lastName') ;
+                    @if (lastName?.errors && lastName?.touched) {
+                    <div class="max-w-md mx-auto space-y-4 pt-2">
+                        <p-message severity="error" [closable]="false">
+                            <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 list text-sm">
+                                @if (lastName?.getError('required')) {
+                                <li>Name is required</li>
+                                }
+                                @if (lastName?.getError('minlength')) {
+                                <li>At least 3 letters</li>
+                                }
+                                @if (lastName?.getError('maxlength')) {
+                                <li>Up to 10 letters only</li>
+                                }
+                            </ul>
+                        </p-message>
+                    </div>
+                    }
                 </div>
+
             </div>
 
-            <div class="flex flex-col pt-2">
-                <label for="username" class="font-medium text-[#1F2937]">Username<span
-                        class="font-medium text-[#DC2626]">*</span></label>
-                <input formControlName="username" pInputText id="username" type="text" placeholder="user123" />
+            <!-- user name and alert valedation mes -->
+            <div>
+                <!-- user name input -->
+                <div class="flex flex-col pt-2">
+                    <label for="username" class="font-medium text-[#1F2937]">Username<span
+                            class="font-medium text-[#DC2626]">*</span></label>
+                    <input formControlName="username" pInputText id="username" type="text" placeholder="user123" />
+                </div>
+
+                <!-- valedation user name mes  -->
+                @let userName = registerForm.get('username') ;
+                @if (userName?.errors && userName?.touched) {
+                <div class="max-w-md mx-auto space-y-4 pt-2">
+                    <p-message severity="error" [closable]="false">
+                        <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 list text-sm">
+                            @if (userName?.getError('required')) {
+                            <li>User name is required</li>
+                            }
+                            @if (userName?.getError('pattern')) {
+                            <li>First character must be a letter</li>
+                            <li>Must have at least a number</li>
+                            }
+                        </ul>
+                    </p-message>
+                </div>
+                }
             </div>
 
-            <div class="pt-2">
-                <label for="phone" class="font-medium">Phone</label>
-                <p-inputgroup>
-                    <p-inputgroup-addon>
-                        formControlName="phone"
-                        <img src="/images/icons8-egypt-48.png" alt="Egypt" class="w-5 h-4 rounded-sm">
-                        <span class="ml-2">+20</span>
-                    </p-inputgroup-addon>
+            <!-- phone and alert valedation mes -->
+            <div>
+                <!-- phone input -->
+                <div class="flex flex-col pt-2">
+                    <label for="phone" class="font-medium text-[#1F2937]">Phone<span
+                            class="font-medium text-[#DC2626]">*</span></label>
+                    <input formControlName="phone" pInputText id="phone" type="tel" placeholder="01012345678"
+                        name="phone">
+                </div>
 
-                    <input pInputText id="phone" type="tel" placeholder="1012345678" [(ngModel)]="phone" name="phone">
-                </p-inputgroup>
+                <!-- valedation phone mes  -->
+                @let phone = registerForm.get("phone") ;
+                @if (phone?.errors && phone?.touched) {
+                <div class="max-w-md mx-auto space-y-4 pt-2">
+                    <p-message severity="error" [closable]="false">
+                        <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 list text-sm">
+                            @if (phone?.getError('required')) {
+                            <li>User name is required</li>
+                            }
+                            @if (phone?.getError('pattern')) {
+                            <li>Must be a egyption number</li>
+                            }
+                        </ul>
+                    </p-message>
+                </div>
+                }
             </div>
 
             <div class="pt-10">
-                <button (submit)="submitUserInfo()" pButton type="button" routerLink=""
+                <button pButton type="submit"
                     class="w-full text-[#1F2937]! font-medium text-sm bg-[#EFF6FF]! border-[#155DFC]! py-3">
                     Next
                     <i class="pi pi-chevron-right"></i>

@@ -20,13 +20,13 @@ export class AuthService implements AuthAPI{
   private readonly authAdaptorService = inject(AuthAdaptorService)
 
 
-login(data:LoginReq):Observable<RegisterRes | string>{
+login(data:LoginReq):Observable<RegisterRes>{
   return this.httpClient.post<OriginDataRes>(AuthEndPoint.LOGIN,data)
   .pipe(map((res) => this.authAdaptorService.adapt(res)), catchError((err) => of(err)))
 }
 
 
-register(data: RegisterReq): Observable<RegisterRes | string> {
+register(data: RegisterReq): Observable<RegisterRes> {
   return this.httpClient.post<OriginDataRes>(AuthEndPoint.REGISTER,data)
   .pipe(map((res) => this.authAdaptorService.adapt(res)),catchError((err) => of(err)))
 }

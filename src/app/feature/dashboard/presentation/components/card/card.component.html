@@ -1,0 +1,23 @@
+<div class="mb-4 flex items-center justify-center w-full" [routerLink]="['/exams', data().id]">
+    <p-card  class="block w-full" [style]="{ height:'448px' , 'border-radius':'0' , overflow: 'hidden' }">
+
+        <ng-template #header>
+            <div class="group relative w-84 h-112 overflow-hidden">
+                <img alt="Card" class="w-full h-full object-cover"
+                    [src]="data().image" />
+
+
+                <div class="absolute top-85 left-2.5 w-73 h-24.5 group-hover:top-40 group-hover:h-69.5 p-4 gap-1 flex flex-col bg-[#155DFC]/75 transition-all duration-500">
+
+                    <span class="font-semibold text-[20px] leading-none tracking-normal text-white"> {{data().title}} </span>
+
+                    <p class="font-normal text-[14px] leading-4 line-clamp-2 group-hover:line-clamp-none tracking-normal text-white pt-1 ">
+                        {{data().description}}
+                    </p>
+
+                </div>
+            </div>
+
+        </ng-template>
+    </p-card>
+</div>

@@ -4,29 +4,83 @@
         <app-static-panel></app-static-panel>
     </div>
     <div class="col-12 col-lg-6 w-full p-6 max-w-113 h-auto flex justify-center items-center">
-        <form class="w-full max-w-113 h-auto " action="" [formGroup]="loginForm" (ngSubmit)="login()">
+        <form class="w-full max-w-113 h-auto " [formGroup]="loginForm" (ngSubmit)="login()">
             <div>
-                <h2 class="font-bold text-[30px] text-[#1F2937]">Login</h2>
+                <h2 class="font-inter font-bold text-[30px] text-[#1F2937]">Login</h2>
             </div>
 
-            <div class="flex flex-col gap-1 pt-10">
-                <label for="username" class="font-medium text-[#1F2937]">Username</label>
-                <input pInputText formControlName="username"  id="username" type="text" placeholder="user123" />
+            <!-- user name and alert valedation mes -->
+            <div>
+                <!-- user name input -->
+                <div class="flex flex-col gap-1 pt-10">
+                    <label for="username" class="font-medium text-[#1F2937]">Username</label>
+
+                    <input pInputText formControlName="username" id="username" type="text" placeholder="user123"
+                        [invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" />
+                </div>
+
+                <!-- valedation user name mes -->
+                @let username = loginForm.get('username');
+                @if (username?.errors && username?.touched)
+                {
+                <div class="max-w-md mx-auto space-y-4 pt-2">
+                    <p-message severity="error" [closable]="false">
+                        <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 list text-sm">
+                            @if (username?.getError('required')) {
+                            <li>User name is required</li>
+                            }
+                            @if (username?.getError('pattern')) {
+                            <li>First character must be a letter</li>
+                            <li>Must have at least a number</li>
+                            }
+                        </ul>
+                    </p-message>
+                </div>
+                }
             </div>
 
-            <div class="flex flex-col gap-1 pt-4">
-                <label for="password" class="font-medium  text-[#1F2937]">Password</label>
+            <!-- password and alert valedation mes -->
+            <div>
+                <!-- password input -->
+                <div  class="flex flex-col gap-1 pt-4">
+                    <label for="password" class="font-medium  text-[#1F2937]">Password</label>
 
-                <p-password formControlName="password" inputId="password" placeholder="********" [feedback]="false" [toggleMask]="true" fluid>
-                </p-password>
+                    <p-password formControlName="password" inputId="password" placeholder="********" [feedback]="false"
+                        [toggleMask]="true" fluid
+                        [invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    </p-password>
+                </div>
+
+                <!-- valedation password mes  -->
+                @let password = loginForm.get('password') ;
+                @if (password?.errors && password?.touched) {
+                <div class="max-w-md mx-auto space-y-4 pt-2">
+                    <p-message severity="error" [closable]="false">
+                        <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5 text-sm">
+                            @if (password?.getError('required')) {
+                            <li>Password is required</li>
+                            }
+                            @if (password?.getError('pattern')) {
+                            <li>At least 1 uppercase letter</li>
+                            <li>At least 1 lowercase letter</li>
+                            <li>At least 1 number</li>
+                            <li>At least 1 special character</li>
+                            <li>Minimum 8 characters</li>
+                            }
+                        </ul>
+                    </p-message>
+                </div>
+                }
             </div>
 
             <div class="pt-2 flex justify-end">
-                 <a routerLink="/forgot-password"  class="font-medium cursor-pointer text-sm text-[#155DFC]">Forgot your password?</a>
+                <a routerLink="/forgot-password" class="font-medium cursor-pointer text-sm text-[#155DFC]">Forgot your
+                    password?</a>
             </div>
 
             <div class="pt-10">
-                <button routerLink="" pButton type="submit" class="w-full text-white font-medium text-sm bg-[#155DFC]! border-[#155DFC]! rounded-xl py-3">
+                <button pButton type="submit"
+                    class="w-full text-white font-medium text-sm bg-[#155DFC]! border-[#155DFC]! rounded-xl py-3">
                     Login
                 </button>
             </div>
@@ -39,5 +93,4 @@
 
         </form>
     </div>
-</div> 
-
+</div>
